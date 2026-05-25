@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Инфо ГроТако</title>
+    <style>
+        /* Общие стили для воссоздания атмосферы Web 1.0 */
+        body {
+            background: linear-gradient(to bottom, #748d92, #3f5e6b, #1f3641);
+            color: #ffffff;
+            font-family: "Courier New", Courier, monospace;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            border-radius: 10px;
+        }
+
+        /* Шапка сайта */
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .logo {
+            font-family: 'Impact', sans-serif;
+            font-size: 3.5rem;
+            letter-spacing: 2px;
+            margin: 10px 0;
+            text-shadow: 3px 3px 0px #000;
+        }
+
+        .symbols {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        /* Навигация (кнопки-ссылки из 90-х/00-х) */
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .nav-btn {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            text-decoration: none;
+            color: black;
+            border: 2px solid #000;
+            box-shadow: 2px 2px 0px #000;
+            font-size: 0.85rem;
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+        
+        .nav-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 0px 0px 0px #000;
+        }
+
+        .btn-tiktok { background-color: #8ed1fc; }
+        .btn-anon { background-color: #a5f3fc; }
+        .btn-tg { background-color: #b3a2f2; }
+        .btn-dc { background-color: #f78da7; }
+        .btn-shitpost { background-color: #ffb74d; }
+
+        .update-badge {
+            background-color: #2a435e;
+            color: #8bb2df;
+            padding: 5px 15px;
+            display: inline-block;
+            font-size: 0.9rem;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        /* Основной контент (две колонки) */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 600px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Левая колонка: Аватар и Юзербары */
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .avatar-container {
+            border: 4px solid;
+            border-image: linear-gradient(45deg, red, yellow, green, cyan, blue, magenta) 1;
+            padding: 5px;
+            background: black;
+            margin-bottom: 20px;
+            width: 280px;
+        }
+
+        /* Старые добрые гиф-баннеры / юзербары */
+        .userbars {
+            width: 290px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .userbar {
+            padding: 6px;
+            text-align: center;
+            font-family: 'Arial Black', sans-serif;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            border: 1px solid #000;
+            letter-spacing: 1px;
+        }
+        .ub-1 { background: linear-gradient(to right, #ff0055, #000); color: #fff; }
+        .ub-2 { background: #000; color: #ff0000; font-weight: bold; border: 1px dashed red; }
+        .ub-3 { background: #4a0e4e; color: #da70d6; font-style: italic; }
+        .ub-4 { background: linear-gradient(to right, #39ff14, #00ffff); color: #000; }
+        .ub-5 { background: #222; color: #aaa; }
+        .ub-6 { background: #c71585; color: #fff; }
+
+        /* Правая колонка: Текст приветствия и инфо */
+        .right-column {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        /* Стили подписей над картинками в правой колонке */
+        .retro-label {
+            font-family: "Courier New", Courier, monospace;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            color: #ffffff;
+            opacity: 0.9;
+        }
+
+        .retro-img-wrap {
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .retro-img-wrap img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Стили для текстовых блоков информации */
+        .info-block {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .dni-box {
+            background: #1a0000;
+            border: 2px dashed #ff3333;
+            padding: 12px;
+            border-radius: 8px;
+            color: #ff9999;
+        }
+
+        .dni-title {
+            font-family: 'Arial Black', sans-serif;
+            color: #ff3333;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            text-shadow: 1px 1px 0 #000;
+        }
+
+        .gif-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 25px 0;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            align-items: center;
+        }
+
+        .gif-row {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 10px;
+            justify-content: center;
+            width: 100%;
+            max-width: 620px;
+        }
+
+        .gif-row-small {
+            max-width: 560px;
+        }
+
+        .gif-item {
+            overflow: hidden;
+            border: none;
+            --border-radius: 8px;
+            background: transparent;
+            width: 100%;
+            max-width: 120px;
+        }
+
+        .gif-item.small {
+            max-width: 55px;
+        }
+
+        .gif-item img {
+            display: block;
+            width: 100%;
+            height: auto;
+            --border-radius: 8px;
+        }
+
+        /* Подвал сайта */
+        footer {
+            margin-top: 25px;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.7rem;
+            color: #888;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <header>
+        <div class="logo">ГРОТАКО</div>
+        <div class="symbols">☆ ☌ ♡</div>
+        
+        <nav>
+            <a href="https://www.tiktok.com/@grotaco_taco_p00p" target="_blank" class="nav-btn btn-tiktok">TIKTOK</a>
+            <a href="http://t.me/letsqbot?start=26ius" target="_blank" class="nav-btn btn-anon">АНОНКА</a>
+            <a href="https://t.me/tacos_timeO_o" target="_blank" class="nav-btn btn-tg">ТГ-КАНАЛ</a>
+            <a href="https://discord.gg/PD22wWSeM" target="_blank" class="nav-btn btn-dc">DISCORD</a>
+            <a href="https://t.me/+0kjKvJ6KScNmODc6" target="_blank" class="nav-btn btn-shitpost">ЩИТПОСТ</a>
+        </nav>
+
+        <div class="update-badge">last 2026 update: 25.05.26</div>
+    </header>
+
+    <div class="main-layout">
+        
+        <div class="left-column">
+            <div class="avatar-container">
+                <img src="idiot.jpg" alt="уилл фёдар" style="width: 100%; height: 350px; object-fit: cover; display: block;">
+            </div>
+
+            <div style="width: 290px; text-align: center;">
+                <img src="animation.gif" alt="свага" style="width: 100%; height: auto; display: block; border: 1px solid rgba(255, 255, 255, 0.2);">
+            </div>
+        </div>
+
+        <div class="right-column" style="align-items: center; text-align: center;">
+            
+            <div class="retro-label">Приветствую тебя</div>
+            <div class="retro-img-wrap">
+                <img src="internet_strannik.png" alt="ИНТЕРНЕТ СТРАННИК">
+            </div>
+            
+            <div class="retro-label">Меня звать</div>
+            <div class="retro-img-wrap">
+                <img src="grotaco.png" alt="GroTaco">
+            </div>
+            
+            <div class="retro-label">И это</div>
+            <div class="retro-img-wrap" style="margin-bottom: 25px;">
+                <img src="my_site.gif" alt="Мой сайт">
+            </div>
+            
+            <div class="info-block" style="text-align: left; width: 100%; box-sizing: border-box;">
+                🎴 Я не постоянный фандомщик, поэтому подписываться из-за определённого фандома не советую. Мои интересы могут меняться.
+            </div>
+
+            <div class="info-block dni-box" style="text-align: left; width: 100%; box-sizing: border-box;">
+                <div class="dni-title">DNI (Do Not Interact):</div>
+                педо | расисты на серьёзе | эйджисты | зоо | нацисты, фашисты | фэтфобы
+            </div>
+
+            <!-- Блок с виджетом счетчика/плеера и иконкой внизу правой колонки -->
+            <div style="margin-top: 15px; display: flex; flex-direction: column; align-items: center; gap: 12px;">
+                <div style="display: flex; justify-content: center; align-items: center;">
+                    <img src="player.gif" alt="виджет" style="max-width: 100%; height: 32px;">
+                </div>
+                <div style="display: flex; justify-content: center;">
+                    <img src="badger.png" alt="стейси" style="width: 48px; height: auto;">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="gif-gallery">
+        <div class="gif-row gif-row-small">
+            <div class="gif-item"><img src="cowboyup.gif" alt="cowboyup"></div>
+            <div class="gif-item"><img src="dvd.gif" alt="dvd"></div>
+            <div class="gif-item"><img src="volume.gif" alt="volume"></div>
+            <div class="gif-item small"><img src="nyancat2.gif" alt="nyancat2"></div>
+        </div>
+        <div class="gif-row gif-row-main">
+            <div class="gif-item"><img src="dudec.gif" alt="dudec"></div>
+            <div class="gif-item"><img src="ghast.gif" alt="ghast"></div>
+            <div class="gif-item"><img src="heart.gif" alt="heart"></div>
+            <div class="gif-item"><img src="nyancat.gif" alt="nyancat"></div>
+        </div>
+    </div>
+
+    <footer>
+        Спасибо что прочитали инфо, хорошего времени!!
+    </footer>
+
+</div>
+
+</body>
+</html>
