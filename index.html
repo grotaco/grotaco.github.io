@@ -118,6 +118,16 @@
             box-shadow: 0 0 0 2px #3f5e6b, 0 0 0 5px #000;
         }
 
+        /* Стили для аватарки: исправленный фон — добавляем черную подложку и корректное отображение */
+        .avatar-image {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            display: block;
+            background-color: #111;  /* тёмный фон на случай прозрачности */
+            border-radius: 2px;
+        }
+
         /* Старые добрые гиф-баннеры / юзербары */
         .userbars {
             width: 290px;
@@ -254,6 +264,17 @@
             border-top: 1px solid rgba(255,255,255,0.1);
             width: 100%;
         }
+        
+        /* дополнительно улучшим отображение гифок и картинок */
+        img {
+            image-rendering: crisp-edges;
+        }
+        
+        /* делаем фон аватар-контейнера более явным, если сама картинка имеет прозрачность */
+        .avatar-container {
+            background: #000000;
+            box-shadow: inset 0 0 0 1px #222, 0 4px 10px rgba(0,0,0,0.4);
+        }
     </style>
 </head>
 <body>
@@ -279,11 +300,16 @@
         
         <div class="left-column">
             <div class="avatar-container">
-                <img src="idiot.png" alt="уилл фёдар" style="width: 100%; height: 350px; object-fit: cover; display: block;">
+                <!-- ИСПРАВЛЕНИЕ ЗАДНЕГО ФОНА: 
+                     Явно задаём background контейнера, убираем возможный прозрачный фон изображения через стиль.
+                     Картинка "idiot.png" теперь отображается с корректным чёрным фоном и без посторонних артефактов.
+                -->
+                <img class="avatar-image" src="idiot.png" alt="уилл фёдар" 
+                     style="background-color: #000000; object-fit: cover; width: 100%; height: 350px; display: block;">
             </div>
 
             <div style="width: 290px; text-align: center;">
-                <img src="animation.gif" alt="свага" style="width: 100%; height: auto; display: block; border: 1px solid rgba(255, 255, 255, 0.2);">
+                <img src="animation.gif" alt="свага" style="width: 100%; height: auto; display: block; border: 1px solid rgba(255, 255, 255, 0.2); background-color: #000;">
             </div>
         </div>
 
@@ -291,17 +317,17 @@
             
             <div class="retro-label">Приветствую тебя</div>
             <div class="retro-img-wrap">
-                <img src="internet_strannik.png" alt="ИНТЕРНЕТ СТРАННИК">
+                <img src="internet_strannik.png" alt="ИНТЕРНЕТ СТРАННИК" style="background: transparent;">
             </div>
             
             <div class="retro-label">Меня звать</div>
             <div class="retro-img-wrap">
-                <img src="grotaco.png" alt="GroTaco">
+                <img src="grotaco.png" alt="GroTaco" style="background: transparent;">
             </div>
             
             <div class="retro-label">И это</div>
             <div class="retro-img-wrap" style="margin-bottom: 25px;">
-                <img src="my_site.gif" alt="Мой сайт">
+                <img src="my_site.gif" alt="Мой сайт" style="background: transparent;">
             </div>
             
             <div class="info-block" style="text-align: left; width: 100%; box-sizing: border-box;">
@@ -316,10 +342,10 @@
             <!-- Блок с виджетом счетчика/плеера и иконкой внизу правой колонки -->
             <div style="margin-top: 15px; display: flex; flex-direction: column; align-items: center; gap: 12px;">
                 <div style="display: flex; justify-content: center; align-items: center;">
-                    <img src="player.gif" alt="виджет" style="max-width: 100%; height: 32px;">
+                    <img src="player.gif" alt="виджет" style="max-width: 100%; height: 32px; background: transparent;">
                 </div>
                 <div style="display: flex; justify-content: center;">
-                    <img src="badger.png" alt="стейси" style="width: 48px; height: auto;">
+                    <img src="badger.png" alt="стейси" style="width: 48px; height: auto; background: transparent;">
                 </div>
             </div>
 
