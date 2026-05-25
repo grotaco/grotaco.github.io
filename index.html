@@ -109,26 +109,25 @@
             align-items: center;
         }
 
-        /* Контейнер аватарки - теперь без чёрного фона, только рамка */
+        /* Контейнер аватарки — убрана любая рамка и фон */
         .avatar-container {
-            padding: 8px;
-            background: rgba(0, 0, 0, 0.3);
             margin-bottom: 20px;
             width: 280px;
-            border-radius: 12px;
-            box-shadow: 0 0 0 1px rgba(255,255,255,0.2), 0 5px 15px rgba(0,0,0,0.3);
+            /* Нет рамок, нет фона, нет теней */
         }
 
-        /* Стиль для изображения — убираем любой принудительный фон, оставляем прозрачность PNG */
+        /* Стиль для изображения — абсолютно без рамок, без фона, без теней */
         .avatar-image {
             width: 100%;
             height: 350px;
             object-fit: cover;
             display: block;
-            border-radius: 8px;
-            /* Убираем background-color — PNG остаётся прозрачным */
-            /* Добавляем лёгкую тень, чтобы изображение выделялось на градиенте */
-            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
+            background: transparent;
+            /* Убираем всё: рамки, тени, обводки */
+            outline: none;
+            border: none;
+            box-shadow: none;
+            filter: none;
         }
 
         /* Старые добрые гиф-баннеры / юзербары */
@@ -270,10 +269,9 @@
             width: 100%;
         }
         
-        /* Дополнительно для всех картинок — сохраняем прозрачность, убираем лишние фоны */
+        /* Дополнительно для всех картинок — сохраняем прозрачность */
         img {
             image-rendering: crisp-edges;
-            background: transparent;
         }
         
         /* Анимация для ссылок */
@@ -306,11 +304,11 @@
     <div class="main-layout">
         
         <div class="left-column">
+            <!-- Убран padding, background, box-shadow — теперь контейнер не добавляет никаких рамок -->
             <div class="avatar-container">
-                <!-- ИСПРАВЛЕНИЕ: Теперь у PNG полностью прозрачный фон, без чёрной подложки.
-                     Добавлена лёгкая тень для читаемости на любом фоне, но сам фон остаётся прозрачным. -->
+                <!-- Убраны все рамки, обводки, тени, фильтры — чистое прозрачное PNG -->
                 <img class="avatar-image" src="idiot.png" alt="уилл фёдар" 
-                     style="background: transparent; object-fit: cover; width: 100%; height: 350px; display: block;">
+                     style="background: transparent; object-fit: cover; width: 100%; height: 350px; display: block; border: none; outline: none; box-shadow: none; filter: none;">
             </div>
 
             <div style="width: 290px; text-align: center;">
