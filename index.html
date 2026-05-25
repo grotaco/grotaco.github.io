@@ -109,23 +109,26 @@
             align-items: center;
         }
 
+        /* Контейнер аватарки - теперь без чёрного фона, только рамка */
         .avatar-container {
-            padding: 5px;
-            background: black;
+            padding: 8px;
+            background: rgba(0, 0, 0, 0.3);
             margin-bottom: 20px;
             width: 280px;
-            border-radius: 4px;
-            box-shadow: 0 0 0 2px #3f5e6b, 0 0 0 5px #000;
+            border-radius: 12px;
+            box-shadow: 0 0 0 1px rgba(255,255,255,0.2), 0 5px 15px rgba(0,0,0,0.3);
         }
 
-        /* Стили для аватарки: исправленный фон — добавляем черную подложку и корректное отображение */
+        /* Стиль для изображения — убираем любой принудительный фон, оставляем прозрачность PNG */
         .avatar-image {
             width: 100%;
             height: 350px;
             object-fit: cover;
             display: block;
-            background-color: #111;  /* тёмный фон на случай прозрачности */
-            border-radius: 2px;
+            border-radius: 8px;
+            /* Убираем background-color — PNG остаётся прозрачным */
+            /* Добавляем лёгкую тень, чтобы изображение выделялось на градиенте */
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
         }
 
         /* Старые добрые гиф-баннеры / юзербары */
@@ -180,6 +183,7 @@
             max-width: 100%;
             height: auto;
             display: block;
+            filter: drop-shadow(0 2px 3px rgba(0,0,0,0.4));
         }
 
         /* Стили для текстовых блоков информации */
@@ -252,6 +256,7 @@
             width: 100%;
             height: auto;
             --border-radius: 8px;
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3));
         }
 
         /* Подвал сайта */
@@ -265,15 +270,17 @@
             width: 100%;
         }
         
-        /* дополнительно улучшим отображение гифок и картинок */
+        /* Дополнительно для всех картинок — сохраняем прозрачность, убираем лишние фоны */
         img {
             image-rendering: crisp-edges;
+            background: transparent;
         }
         
-        /* делаем фон аватар-контейнера более явным, если сама картинка имеет прозрачность */
-        .avatar-container {
-            background: #000000;
-            box-shadow: inset 0 0 0 1px #222, 0 4px 10px rgba(0,0,0,0.4);
+        /* Анимация для ссылок */
+        .nav-btn:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: 3px 3px 0px #000;
+            transition: 0.05s linear;
         }
     </style>
 </head>
@@ -300,16 +307,14 @@
         
         <div class="left-column">
             <div class="avatar-container">
-                <!-- ИСПРАВЛЕНИЕ ЗАДНЕГО ФОНА: 
-                     Явно задаём background контейнера, убираем возможный прозрачный фон изображения через стиль.
-                     Картинка "idiot.png" теперь отображается с корректным чёрным фоном и без посторонних артефактов.
-                -->
+                <!-- ИСПРАВЛЕНИЕ: Теперь у PNG полностью прозрачный фон, без чёрной подложки.
+                     Добавлена лёгкая тень для читаемости на любом фоне, но сам фон остаётся прозрачным. -->
                 <img class="avatar-image" src="idiot.png" alt="уилл фёдар" 
-                     style="background-color: #000000; object-fit: cover; width: 100%; height: 350px; display: block;">
+                     style="background: transparent; object-fit: cover; width: 100%; height: 350px; display: block;">
             </div>
 
             <div style="width: 290px; text-align: center;">
-                <img src="animation.gif" alt="свага" style="width: 100%; height: auto; display: block; border: 1px solid rgba(255, 255, 255, 0.2); background-color: #000;">
+                <img src="animation.gif" alt="свага" style="width: 100%; height: auto; display: block; border: 1px solid rgba(255, 255, 255, 0.2); background: transparent; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));">
             </div>
         </div>
 
